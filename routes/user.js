@@ -53,7 +53,8 @@ router.post('/signin', function(req, res, next) {
         res.status(200).json({
             message: 'Successfully logged in',
             success: 1,
-            obj: result
+            token: token,
+            obj : user
         });
     });
 });
