@@ -10,6 +10,6 @@ mongoose.connect('mongodb://root:toor@ds051595.mlab.com:51595/theexplorer-backen
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use('v1/user', userRoutes);
+app.use('/v1/user', userRoutes);
 
 module.exports = app;
