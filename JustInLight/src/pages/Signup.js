@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar, Button } from 'react-native';
-
+import Input from '../components/SignupInputs';
 import Logo from '../components/Logo';
 
 import {Actions} from 'react-native-router-flux';
@@ -27,7 +27,7 @@ export default class Signup extends React.Component {
 
         <Text style={{fontSize:25}}> Sign Up Page  </Text>
         </View>
-
+        <Input />
 
         </View>
 
