@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var userRoutes = require('./routes/user');
 
 var app = express();
-mongoose.connect('process.env.MONGODB_URI');
+mongoose.connect(process.env.MONGODB_URI);
 //mongoose.connect('Your URL');
 
 app.use(bodyParser.json());
