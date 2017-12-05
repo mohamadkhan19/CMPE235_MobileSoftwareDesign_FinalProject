@@ -18,6 +18,7 @@ router.get('/', function (req, res, next) {
             }
             res.status(200).json({
                 message: 'Success',
+                success: 1,
                 obj: formdetails
             });
         });
@@ -63,6 +64,7 @@ router.post('/', function (req, res, next) {
             user.save();
             res.status(201).json({
                 message: 'Saved form details',
+                success: 1,
                 obj: result
             });
         });
@@ -100,6 +102,7 @@ router.delete('/:id', function (req, res, next) {
             }
             res.status(200).json({
                 message: 'Deleted form details',
+                success: 1,
                 obj: result
             });
         });
