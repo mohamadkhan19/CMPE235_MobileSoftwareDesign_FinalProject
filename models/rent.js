@@ -14,7 +14,7 @@ var schema = new Schema({
 
 schema.post('remove', function (form) {
     User.findById(form.user_id, function (err, user) {
-        user.service_provider_id.pull(form);
+        user.Rent_id.pull(form);
         user.save();
     });
 });

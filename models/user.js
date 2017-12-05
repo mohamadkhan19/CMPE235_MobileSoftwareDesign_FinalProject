@@ -9,7 +9,8 @@ var schema = new Schema({
     email: {type: String, required: true, unique: true},
     form_id: [{type: Schema.Types.ObjectId, ref: 'Form_id'}],
     service_provider_id: [{type: Schema.Types.ObjectId, ref: 'Service_provider_id'}],
-    service_user_id: [{type: Schema.Types.ObjectId, ref: 'Service_user_id'}]
+    service_user_id: [{type: Schema.Types.ObjectId, ref: 'Service_user_id'}],
+    rent_id: [{type: Schema.Types.ObjectId, ref: 'Rent_id'}]
 });
 
 schema.plugin(mongooseUniqueValidator);
