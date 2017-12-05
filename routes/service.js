@@ -45,9 +45,14 @@ router.post('/', function (req, res, next) {
             });
         }
         var service = new Service({
-            name: req.body.name,
+            id: req.body.id,
             photo: req.body.photo,
+            type: req.body.type,
+            time: req.body.time,
+            header: req.body.header,
             status: req.body.status,
+            text: req.body.text,
+            comments: req.body.comments,
             user_id: user._id
         });
         service.save(function (err, result) {
@@ -88,9 +93,13 @@ router.patch('/:id', function (req, res, next) {
                 error: {message: 'Users do not match'}
             });
         }
-        form.name = req.body.name;
+        form.id = req.body.id;
         form.photo = req.body.photo;
+        form.type = req.body.type;
+        form.header = req.body.header;
         form.status = req.body.status;
+        form.text = req.body.text;
+        form.comments = req.body.comments;
         form.save(function (err, result) {
             if (err) {
                 return res.status(500).json({
