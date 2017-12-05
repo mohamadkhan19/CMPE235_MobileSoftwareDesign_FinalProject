@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var userRoutes = require('./routes/user');
 var serviceProviderRoutes = require('./routes/serviceprovider');
 var serviceRoutes = require('./routes/service');
+var rentRoutes = require('./routes/rent');
 
 var app = express();
 mongoose.connect(process.env.MONGODB_URI);
@@ -15,5 +16,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/v1/user', userRoutes);
 app.use('/v1/serviceprovider', serviceProviderRoutes);
 app.use('/v1/service', serviceRoutes);
+app.use('/v1/rent', rentRoutes);
 
 module.exports = app;
