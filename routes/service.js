@@ -6,6 +6,22 @@ var User = require('../models/user');
 var Service = require('../models/service');
 
 // endpoint 'v1/service'
+router.post('/getdescription', function (req, res, next) {
+    Service.findById(req.body.id, function (err, form) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'Success',
+                success: 1,
+                obj: form
+            });
+        });
+});
+// endpoint 'v1/service'
 router.get('/', function (req, res, next) {
     Service.find()
         .populate('user', 'firstName')
