@@ -5,6 +5,24 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 
+router.get('/', function (req, res, next) {
+    User.find()
+        .populate('user', 'firstName')
+        .exec(function (err, formdetails) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'Success',
+                success: 1,
+                obj: formdetails
+            });
+        });
+});
+
 // route "v1/user/register"
 router.post('/register', function (req, res, next) {
     var user = new User({
@@ -98,6 +116,24 @@ router.delete('/:id', function (req, res, next) {
 // endpoint 'v1/user/count'
 router.get('/count', function (req, res, next) {
     User.aggregate({"$group":{_id:"$type", count:{$sum:1}}})
+        .exec(function (err, result) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'Success',
+                success: 1,
+                obj: result
+            });
+        });
+});
+
+// endpoint 'v1/user/customers'
+router.get('/customers', function (req, res, next) {
+    User.find({type:"Customer"})
         .exec(function (err, result) {
             if (err) {
                 return res.status(500).json({
