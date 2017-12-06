@@ -4,6 +4,8 @@ var Schema = mongoose.Schema;
 var User = require('./user');
 
 var schema = new Schema({
+    service_id: {type: Number},
+    service_name: {type: String},
     name: {type: String},
     address: {type: String},
     zipcode: {type: String},

@@ -46,6 +46,8 @@ router.post('/', function (req, res, next) {
             });
         }
         var schedule = new Schedule({
+            service_id: req.body.service_id,
+            service_name: req.body.service_name,
             name: req.body.name,
             address: req.body.address,
             zipcode: req.body.zipcode,
