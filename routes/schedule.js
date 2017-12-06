@@ -5,18 +5,6 @@ var jwt = require('jsonwebtoken');
 var Schedule = require('../models/schedule');
 var User = require('../models/user');
 
-router.use('/', function (req, res, next) {
-    jwt.verify(req.body.token, 'thisisaveryhiglysecuremessage1234567890!@#$%^&*()', function (err, decoded) {
-        if (err) {
-            return res.status(401).json({
-                title: 'Not Authenticated',
-                error: err
-            });
-        }
-        next();
-    })
-});
-
 // endpoint 'v1/schedule/'
 router.get('/', function (req, res, next) {
     Schedule.find()
@@ -35,6 +23,18 @@ router.get('/', function (req, res, next) {
             });
         });
 });
+router.use('/', function (req, res, next) {
+    jwt.verify(req.body.token, 'thisisaveryhiglysecuremessage1234567890!@#$%^&*()', function (err, decoded) {
+        if (err) {
+            return res.status(401).json({
+                title: 'Not Authenticated',
+                error: err
+            });
+        }
+        next();
+    })
+});
+
 
 router.post('/', function (req, res, next) {
     var decoded = jwt.decode(req.body.token);
