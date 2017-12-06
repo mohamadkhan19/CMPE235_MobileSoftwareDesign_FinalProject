@@ -4,6 +4,7 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 var Cart = require('../models/cart');
+var Rent = require('../models/rent');
 
 router.use('/', function (req, res, next) {
     jwt.verify(req.body.token, 'thisisaveryhiglysecuremessage1234567890!@#$%^&*()', function (err, decoded) {
@@ -71,5 +72,41 @@ router.post('/getservices', function (req, res, next) {
         });
 });
 
+// endpoint 'v1/cart/lease'
+router.post('/lease', function (req, res, next) {
+
+    Cart.find({}).then(function(doc) {
+        doc.forEach(function(u) {
+           console.log(u)
+            var rent = new Rent({
+                service_id: u.service_id,
+            squarefeet: u.squarefeet,
+            duration: u.duration,
+            warranty: u.warranty,
+            price: u.price,
+            user_id: u.user_id
+            });
+            rent.save(function (err, result) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            
+        });
+             
+
+        })
+    })
+    Cart.remove({}, function(err) { 
+        console.log('collection removed') 
+    });
+    return res.status(201).json({
+                    title: 'done'
+                });
+
+
+});
 
 module.exports = router;
