@@ -61,7 +61,7 @@ router.post('/', function (req, res, next) {
                     error: err
                 });
             }
-            user.Schedule_id.push(result);
+            user.schedule_id.push(result);
             user.save();
             res.status(201).json({
                 message: 'Saved form details',
