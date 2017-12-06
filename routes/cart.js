@@ -18,7 +18,7 @@ router.use('/', function (req, res, next) {
     })
 });
 
-// endpoint 'v1/service/add'
+// endpoint 'v1/cart/add'
 router.post('/add', function (req, res, next) {
     var decoded = jwt.decode(req.body.token);
     User.findById(decoded.user._id, function (err, user) {
@@ -30,6 +30,8 @@ router.post('/add', function (req, res, next) {
         }
         var cart = new Cart({
             service_id: req.body.service_id,
+            service_name: req.body.service_name,
+            status: "uninstall",
             squarefeet: req.body.squarefeet,
             duration: req.body.duration,
             warranty: req.body.warranty,
@@ -77,15 +79,18 @@ router.post('/lease', function (req, res, next) {
 
     Cart.find({}).then(function(doc) {
         doc.forEach(function(u) {
-           console.log(u)
+           
             var rent = new Rent({
                 service_id: u.service_id,
-            squarefeet: u.squarefeet,
-            duration: u.duration,
-            warranty: u.warranty,
-            price: u.price,
-            user_id: u.user_id
+                service_name: u.service_name,
+                status: u.status,
+                squarefeet: u.squarefeet,
+                duration: u.duration,
+                warranty: u.warranty,
+                price: u.price,
+                user_id: u.user_id
             });
+
             rent.save(function (err, result) {
             if (err) {
                 return res.status(500).json({
@@ -102,9 +107,11 @@ router.post('/lease', function (req, res, next) {
     Cart.remove({}, function(err) { 
         console.log('collection removed') 
     });
-    return res.status(201).json({
-                    title: 'done'
-                });
+    res.status(200).json({
+                message: 'Success',
+                success: 1,
+                obj: result
+            });
 
 
 });

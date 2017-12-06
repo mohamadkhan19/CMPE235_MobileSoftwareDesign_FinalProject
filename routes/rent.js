@@ -46,11 +46,13 @@ router.post('/', function (req, res, next) {
             });
         }
         var rent = new Rent({
-            service_id: req.body.service_id,
-            squarefeet: req.body.squarefeet,
-            duration: req.body.duration,
-            warranty: req.body.warranty,
-            price: req.body.price,
+            service_id: u.service_id,
+            service_name: u.service_name,
+            status: u.status,
+            squarefeet: u.squarefeet,
+            duration: u.duration,
+            warranty: u.warranty,
+            price: u.price,
             user_id: user._id
         });
         rent.save(function (err, result) {
