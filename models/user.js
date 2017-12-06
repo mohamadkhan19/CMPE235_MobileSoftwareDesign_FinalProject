@@ -12,7 +12,8 @@ var schema = new Schema({
     service_user_id: [{type: Schema.Types.ObjectId, ref: 'Service_user_id'}],
     rent_id: [{type: Schema.Types.ObjectId, ref: 'Rent_id'}],
     vendor_service_id:[{type: Schema.Types.ObjectId, ref: 'Vendor_service_id'}],
-    cart_id:[{type: Schema.Types.ObjectId, ref: 'Cart_id'}]
+    cart_id:[{type: Schema.Types.ObjectId, ref: 'Cart_id'}],
+    schedule_id:[{type: Schema.Types.ObjectId, ref: 'Schedule_id'}]
 });
 
 schema.plugin(mongooseUniqueValidator);
