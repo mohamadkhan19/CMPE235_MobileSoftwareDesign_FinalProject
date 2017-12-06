@@ -67,7 +67,7 @@ router.post('/login', function(req, res, next) {
                 error: {message: 'Invalid login credentials'}
             });
         }
-        var token = jwt.sign({user: user}, 'thisisaveryhiglysecuremessage1234567890!@#$%^&*()', {expiresIn: 300});
+        var token = jwt.sign({user: user}, 'thisisaveryhiglysecuremessage1234567890!@#$%^&*()', {expiresIn: 25245561600});
         res.status(200).json({
             message: 'Successfully logged in',
             success: 1,

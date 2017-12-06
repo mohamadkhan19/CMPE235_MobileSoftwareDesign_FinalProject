@@ -36,7 +36,8 @@ router.use('/', function (req, res, next) {
     })
 });
 
-router.post('/', function (req, res, next) {
+// endpoint 'v1/service/add'
+router.post('/add', function (req, res, next) {
     var decoded = jwt.decode(req.body.token);
     User.findById(decoded.user._id, function (err, user) {
         if (err) {
@@ -63,7 +64,7 @@ router.post('/', function (req, res, next) {
                     error: err
                 });
             }
-            user.service_provider_id.push(result);
+            user.vendor_service_id.push(result);
             user.save();
             res.status(201).json({
                 message: 'Saved form details',
