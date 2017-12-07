@@ -84,7 +84,7 @@ router.post('/lease', function (req, res, next) {
             var rent = new Rent({
                 service_id: u.service_id,
                 service_name: u.service_name,
-                status: "install",
+                status: "uninstall",
                 squarefeet: u.squarefeet,
                 duration: u.duration,
                 warranty: u.warranty,
@@ -104,7 +104,6 @@ router.post('/lease', function (req, res, next) {
              
 
         })
-        next();
     })
     
     res.status(200).json({
