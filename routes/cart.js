@@ -91,7 +91,7 @@ router.post('/lease', function (req, res, next) {
                 user_id: u.user_id
             });
 
-            rent.save(function (err, result) {
+            rent.save(function (err, rent) {
             if (err) {
                 return res.status(500).json({
                     title: 'An error occurred',
@@ -109,8 +109,7 @@ router.post('/lease', function (req, res, next) {
     });
     res.status(200).json({
                 message: 'Success',
-                success: 1,
-                obj: result
+                success: 1
             });
 
 
