@@ -76,21 +76,22 @@ router.post('/getservices', function (req, res, next) {
 
 // endpoint 'v1/cart/lease'
 router.post('/lease', function (req, res, next) {
-
+    console.log("hi1")
     Cart.find({}).then(function(doc) {
+        console.log("hi2")
         doc.forEach(function(u) {
-           
+           console.log("hi3")
             var rent = new Rent({
                 service_id: u.service_id,
                 service_name: u.service_name,
-                status: u.status,
+                status: "install",
                 squarefeet: u.squarefeet,
                 duration: u.duration,
                 warranty: u.warranty,
                 price: u.price,
                 user_id: u.user_id
             });
-
+            console.log("rent"+rent)
             rent.save(function (err, rent) {
             if (err) {
                 return res.status(500).json({
@@ -103,7 +104,19 @@ router.post('/lease', function (req, res, next) {
              
 
         })
+        next();
     })
+    
+    res.status(200).json({
+                message: 'Success',
+                success: 1
+            });
+    
+
+});
+
+// endpoint 'v1/cart/getservices'
+router.post('/remove', function (req, res, next) {
     Cart.remove({}, function(err) { 
         console.log('collection removed') 
     });
@@ -111,8 +124,7 @@ router.post('/lease', function (req, res, next) {
                 message: 'Success',
                 success: 1
             });
-
-
 });
+
 
 module.exports = router;
